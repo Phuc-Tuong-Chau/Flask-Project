@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        
+        p {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .custom-button {
+            background-color: pink;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 24px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .image-container img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <p>I am a rose with thorns.</p>
+    <p>Anger leaves space for demons.</p>
+    <br>
+    <button onclick="handleClick()" class="custom-button">Touch Me!</button>
+    <div class="image-container">
+        <!-- The container that holds the images -->
+    </div>
+</div>
+
+<!-- Include the secondinterface.html page using an iframe -->
+<iframe src="/second" width="100%" height="600"></iframe>
+
+<script>
+    function handleClick() {
+        var imageContainer = document.querySelector('.image-container');
+
+        fetch("/pics") // Fetch the updated image URLs from the server
+            .then(response => response.json())
+            .then(data => {
+                imageContainer.innerHTML = ''; // Clear the image container
+
+                data.forEach(imageUrl => {
+                    var imageElement = document.createElement('img');
+                    imageElement.src = imageUrl;
+                    imageElement.alt = 'Image';
+                    imageContainer.appendChild(imageElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // Refresh the page every 5 seconds
+    setInterval(function() {
+        handleClick();
+    }, 5000);
+</script>
+</body>
+</html>
