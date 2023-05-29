@@ -8,7 +8,7 @@ import time
 
 app = Flask(__name__.split('.')[0])
 
-image_folder =  "C:\\Users\\11063\\OneDrive\\Desktop\\Flask\\pics"
+image_folder =  "local directory"
 
 # Handler for file system events
 class ImageEventHandler(FileSystemEventHandler):
